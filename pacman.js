@@ -86,10 +86,20 @@ function eatGhost(ghost) {
     lifeLost();
   }
 }
- function lifeLost() {
+
+function lifeLost() {
    lives--;
    if (lives === 0) {
      process.exit();
+   }
+ }
+
+ function eatPowerPellet() {
+   console.log('\nPower-Pellet Powers Activate!');
+   score += 50;
+   powerPellets--;
+   for (var index = 0; index < ghosts.length; index++) {
+     ghosts[index].edible = true
    }
  }
 
@@ -102,6 +112,9 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case 'p':
+      eatPowerPellet();
       break;
     case '1':
       eatGhost(ghosts[0]);
