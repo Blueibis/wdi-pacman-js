@@ -157,10 +157,17 @@ function lifeLost() {
    score += 50;
    powerPellets--;
    for (var index = 0; index < ghosts.length; index++) {
-     ghosts[index].edible = true
+     ghosts[index].edible = true;
    }
+   setTimeout(pelletTimer, 10000);
  }
 
+function pelletTimer() {
+  for (var index = 0; index < ghosts.length; index++) {
+    ghosts[index].edible = false;
+  }
+  drawScreen();
+}
 // Process Player's Input
 function processInput(key) {
   switch(key) {
