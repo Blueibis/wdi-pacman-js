@@ -86,6 +86,10 @@ function eatGhost(ghost) {
   if (ghost.edible === false) {
     console.log('\n' + ghost.name + ' the ' + ghost.colour + ' chomps Pac-Man. You didn\'t have immunity!');
     lifeLost();
+  } else {
+    console.log('\nYou ate ' + ghost.character + ' ' + ghost.name + '.');
+    ghost.edible = false;
+    score += 200;
   }
 }
 
