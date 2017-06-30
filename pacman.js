@@ -63,7 +63,7 @@ function displayMenu() {
   console.log('(1) Eat ' + ghosts[0].name);
   console.log('(2) Eat ' + ghosts[1].name);
   console.log('(3) Eat ' + ghosts[2].name);
-  console.log('(4) Eat ' + ghosts[3].name);    
+  console.log('(4) Eat ' + ghosts[3].name);
   console.log('(q) Quit');
 }
 
@@ -77,6 +77,13 @@ function displayPrompt() {
 function eatDot() {
   console.log('\nChomp!');
   score += 10;
+}
+
+function eatGhost(ghost) {
+  if (ghost.edible === false) {
+    console.log('\n' + ghost.name + ' the ' + ghost.colour + ' chomps Pac-Man. You didn\'t have immunity!');
+    lives--;
+  }
 }
 
 
