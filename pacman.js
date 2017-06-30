@@ -82,10 +82,15 @@ function eatDot() {
 function eatGhost(ghost) {
   if (ghost.edible === false) {
     console.log('\n' + ghost.name + ' the ' + ghost.colour + ' chomps Pac-Man. You didn\'t have immunity!');
-    lives--;
+    lifeLost();
   }
 }
-
+ function lifeLost() {
+   lives--;
+   if (lives === 0) {
+     process.exit();
+   }
+ }
 
 // Process Player's Input
 function processInput(key) {
@@ -96,6 +101,18 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost(ghosts[0]);
+      break;
+    case '2':
+      eatGhost(ghosts[1]);
+      break;
+    case '3':
+      eatGhost(ghosts[2]);
+      break;
+    case '4':
+      eatGhost(ghosts[3]);
       break;
     default:
       console.log('\nInvalid Command!');
