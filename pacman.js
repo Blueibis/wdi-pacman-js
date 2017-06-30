@@ -3,6 +3,7 @@ var score = 0;
 var lives = 2;
 var powerPellets = 4;
 var ghostsEaten = 0;
+var dots = 240;
 
 // Define your ghosts here
 var inky = {
@@ -56,20 +57,29 @@ function clearScreen() {
 
 function displayStats() {
   console.log('Score: ' + score + '     Lives: ' + lives);
-  console.log('\n\nPower-pellets: ' + powerPellets + '     Ghosts eaten: ' + ghostsEaten);
+  console.log('\n\nPower-pellets: ' + powerPellets + '     Ghosts eaten: ' + ghostsEaten + '     Dots: ' + dots);
 }
 
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
-  console.log('(d) Eat Dot');
+  if (dots > 0) {
+    console.log('(d) Eat Dot');
+    console.log('(f) Eat Remaining Dots');
+  }
+  if (dots > 10) {
+    console.log('(g) Eat 10 Dots');
+  }
+  if (dots > 100) {
+    console.log('(h) Eat 100 Dots');
+  }
   if (powerPellets > 0) {
-  console.log('(p) Eat Power-pellet');
+    console.log('(p) Eat Power-pellet\n');
   }
   console.log('(1) Eat ' + ghosts[0].name + edibility(ghosts[0]));
   console.log('(2) Eat ' + ghosts[1].name + edibility(ghosts[1]));
   console.log('(3) Eat ' + ghosts[2].name + edibility(ghosts[2]));
   console.log('(4) Eat ' + ghosts[3].name + edibility(ghosts[3]));
-  console.log('(q) Quit');
+  console.log('\n(q) Quit');
 }
 
 function displayPrompt() {
@@ -79,9 +89,35 @@ function displayPrompt() {
 
 
 // Menu Options
-function eatDot() {
+function eatDot(amount) {
+  switch(amount) {
+    case 1:
+      score += 10;
+      dots--;
+    break;
+    case 'all':
+      score += 10 * dots;
+      dots = 0;
+      break;
+    case 10:
+    if (dots < 10) {
+      return console.log('\nNot enough dots!');
+    }
+      score += 100;
+      dots -= 10;
+      break;
+    case 100:
+    if (dots < 100) {
+      return console.log('\nNot enough dots!');
+    }
+      score += 1000;
+      dots -= 100;
+      break;
+  }
+  if (dots === 0) {
+    console.log('\nNo more dots! You won!');
+  }
   console.log('\nChomp!');
-  score += 10;
 }
 
 function edibility(ghost) {
@@ -131,8 +167,17 @@ function processInput(key) {
       process.exit();
       break;
     case 'd':
-      eatDot();
+      eatDot(1);
       break;
+    case 'f':
+      eatDot('all');
+    break;
+    case 'g':
+      eatDot(10);
+    break;
+    case 'h':
+      eatDot(100);
+    break;
     case 'p':
       eatPowerPellet();
       break;
