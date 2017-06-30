@@ -61,9 +61,9 @@ function displayStats() {
 }
 
 function displayMenu() {
-  console.log('\n\nSelect Option:\n');  // each \n creates a new line
+  console.log('\n\nSelect Option:\n');
+  console.log('(d) Eat Dot'); // each \n creates a new line
   if (dots > 0) {
-    console.log('(d) Eat Dot');
     console.log('(f) Eat Remaining Dots');
   }
   if (dots > 10) {
@@ -90,6 +90,10 @@ function displayPrompt() {
 
 // Menu Options
 function eatDot(amount) {
+  if (dots === 0) {
+    console.log('\nNo more dots! You won!');
+    process.exit();
+  }
   switch(amount) {
     case 1:
       score += 10;
@@ -114,9 +118,7 @@ function eatDot(amount) {
       dots -= 100;
       break;
   }
-  if (dots === 0) {
-    console.log('\nNo more dots! You won!');
-  }
+
   console.log('\nChomp!');
 }
 
