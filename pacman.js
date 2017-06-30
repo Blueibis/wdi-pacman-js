@@ -63,10 +63,10 @@ function displayMenu() {
   if (powerPellets > 0) {
   console.log('(p) Eat Power-pellet');
   }
-  console.log('(1) Eat ' + ghosts[0].name);
-  console.log('(2) Eat ' + ghosts[1].name);
-  console.log('(3) Eat ' + ghosts[2].name);
-  console.log('(4) Eat ' + ghosts[3].name);
+  console.log('(1) Eat ' + ghosts[0].name + edibility(ghosts[0]));
+  console.log('(2) Eat ' + ghosts[1].name + edibility(ghosts[1]));
+  console.log('(3) Eat ' + ghosts[2].name + edibility(ghosts[2]));
+  console.log('(4) Eat ' + ghosts[3].name + edibility(ghosts[3]));
   console.log('(q) Quit');
 }
 
@@ -80,6 +80,14 @@ function displayPrompt() {
 function eatDot() {
   console.log('\nChomp!');
   score += 10;
+}
+
+function edibility(ghost) {
+  if (ghost.edible === false) {
+    return '  (inedible)';
+  } else {
+    return '  (edible)';
+  }
 }
 
 function eatGhost(ghost) {
