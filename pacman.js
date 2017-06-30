@@ -2,6 +2,7 @@
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
+var ghostsEaten = 0;
 
 // Define your ghosts here
 var inky = {
@@ -54,7 +55,8 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives + '\n\n\nPower-pellets: ' + powerPellets);
+  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('\n\nPower-pellets: ' + powerPellets + '     Ghosts eaten: ' + ghostsEaten);
 }
 
 function displayMenu() {
@@ -97,7 +99,8 @@ function eatGhost(ghost) {
   } else {
     console.log('\nYou ate ' + ghost.character + ' ' + ghost.name + '.');
     ghost.edible = false;
-    score += 200;
+    score += (200 * Math.pow(2, ghostsEaten));
+    ghostsEaten++;
   }
 }
 
