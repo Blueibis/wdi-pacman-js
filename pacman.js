@@ -130,6 +130,10 @@ function edibility(ghost) {
   }
 }
 
+function checkEdibility(ghost) {
+  return ghost.edible === false;
+}
+
 function eatGhost(ghost) {
   if (ghost.edible === false) {
     console.log('\n' + ghost.name + ' the ' + ghost.colour + ' chomps Pac-Man. You didn\'t have immunity!');
@@ -152,6 +156,8 @@ function lifeLost() {
  function eatPowerPellet() {
    if (powerPellets === 0) {
      return console.log('\nNo Power-Pellets left!');
+   } else if (ghosts.every(checkEdibility) === false) {
+     return console.log('\nThere are still edible ghosts!');
    }
    console.log('\nPower-Pellet Powers Activate!');
    score += 50;
